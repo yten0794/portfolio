@@ -1359,4 +1359,20 @@
       workButton.removeAttribute('target');
     }
   </script>
+  <script>
+    const quickMenuSide = document.querySelector('.ui-side');
+    if (quickMenuSide) {
+      quickMenuSide.querySelector('.side-label')?.remove();
+      quickMenuSide.querySelectorAll('.side-item').forEach(item => {
+        if (item.textContent.trim() !== 'Overview') item.remove();
+      });
+    }
+  </script>
+  <script>
+    document.querySelector('.ui-side')?.remove();
+  </script>
+  <style>
+    .ui-main { display: block !important; }
+    .ui-content { width: 100%; }
+  </style>
 </body></html>
