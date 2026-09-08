@@ -1343,4 +1343,13 @@
     .hiring-email-card a { color: #2563eb; font-weight: 800; text-decoration: none; }
     .hiring-email-card button { position: absolute; top: 6px; right: 9px; border: 0; background: transparent; color: #8292a2; font-size: 19px; cursor: pointer; }
   </style>
+  <script>
+    document.querySelectorAll('.ui-side .side-item').forEach(item => {
+      if (['Career', 'Projects'].includes(item.textContent.trim())) {
+        item.removeAttribute('href');
+        item.removeAttribute('data-modal');
+        item.addEventListener('click', event => event.preventDefault());
+      }
+    });
+  </script>
 </body></html>
