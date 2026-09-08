@@ -1286,4 +1286,61 @@
   </script>
 
 
+  <script>
+    const quickMenu = document.querySelector('.ui-side');
+    if (quickMenu) {
+      const overviewLink = quickMenu.querySelector('[data-modal="overview"]');
+      if (overviewLink) {
+        overviewLink.removeAttribute('href');
+        overviewLink.removeAttribute('data-modal');
+        overviewLink.addEventListener('click', event => event.preventDefault());
+      }
+      const careerLink = Array.from(quickMenu.querySelectorAll('.side-item')).find(link => link.textContent.trim() === 'Career');
+      const projectsLink = Array.from(quickMenu.querySelectorAll('.side-item')).find(link => link.textContent.trim() === 'Projects');
+      if (careerLink) careerLink.href = '#career';
+      if (projectsLink) projectsLink.href = '#work';
+      const contactLink = Array.from(quickMenu.querySelectorAll('.side-item')).find(link => link.textContent.trim() === 'Contact');
+      if (contactLink) contactLink.remove();
+    }
+
+    const hiringButton = document.querySelector('.nav .cta');
+    if (hiringButton) {
+      hiringButton.href = 'mailto:yten0794@gmail.com';
+      hiringButton.textContent = 'contact | yten0794@gmail.com';
+      hiringButton.classList.add('contact-email-button');
+    }
+  </script>
+  <style>
+    .contact-email-button { white-space: nowrap; }
+    @media (max-width: 760px) { .contact-email-button { font-size: 9px; } }
+  </style>
+  <script>
+    const resumeOverviewModal = document.getElementById('resumeModal');
+    if (resumeOverviewModal) resumeOverviewModal.remove();
+
+    const hiringCta = document.querySelector('.nav .cta');
+    if (hiringCta) {
+      hiringCta.textContent = '채용하기';
+      hiringCta.removeAttribute('href');
+      hiringCta.addEventListener('click', event => {
+        event.preventDefault();
+        let popup = document.querySelector('.hiring-email-popup');
+        if (!popup) {
+          popup = document.createElement('div');
+          popup.className = 'hiring-email-popup';
+          popup.innerHTML = '<div class="hiring-email-card"><button type="button" aria-label="닫기">×</button><span>contact</span><a href="mailto:yten0794@gmail.com">yten0794@gmail.com</a></div>';
+          document.body.appendChild(popup);
+          popup.addEventListener('click', e => {
+            if (e.target === popup || e.target.closest('button')) popup.remove();
+          });
+        }
+      });
+    }
+  </script>
+  <style>
+    .hiring-email-popup { position: fixed; inset: 0; z-index: 200; display: flex; align-items: center; justify-content: center; padding: 20px; background: rgba(13,29,48,.45); }
+    .hiring-email-card { position: relative; display: flex; gap: 10px; align-items: center; padding: 24px 30px; border: 1px solid #dbe5ef; border-radius: 14px; background: #fff; box-shadow: 0 20px 60px rgba(13,29,48,.2); color: #617388; font-size: 13px; }
+    .hiring-email-card a { color: #2563eb; font-weight: 800; text-decoration: none; }
+    .hiring-email-card button { position: absolute; top: 6px; right: 9px; border: 0; background: transparent; color: #8292a2; font-size: 19px; cursor: pointer; }
+  </style>
 </body></html>
